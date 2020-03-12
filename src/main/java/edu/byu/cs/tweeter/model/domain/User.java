@@ -4,13 +4,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+//This is a simplified version of the User object found in the tweeter client. It has been altered to be compatible with AWS lambda.
 public class User implements Comparable<User>
 {
 
-    private final String firstName;
-    private final String lastName;
-    private final String alias;
-    private final String imageUrl;
+    public String firstName;
+    public String lastName;
+    public String alias;
+    public String imageUrl;
+
+    public User()
+    {}
 
     public User(@NotNull String firstName, @NotNull String lastName, String imageURL)
     {

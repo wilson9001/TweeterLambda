@@ -1,6 +1,5 @@
 # Default ignored files
-/.idea/workspace.xml
-/.idea/compiler.xml
-/.idea/misc.xml
-/.idea/vcs.xml
+/.idea/
 /TweeterLambda.iml
+/out/
+/target/
