@@ -4,7 +4,10 @@ import edu.byu.cs.tweeter.model.domain.User;
 
 public class SignOutRequest
 {
-    private final User userToSignOut;
+    public User userToSignOut;
+
+    public SignOutRequest()
+    {}
 
     public SignOutRequest(User userToSignOut)
     {

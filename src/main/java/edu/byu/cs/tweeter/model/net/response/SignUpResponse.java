@@ -6,10 +6,12 @@ public class SignUpResponse
 {
     private final User signedUpUser;
     private final String message;
+    private final String authToken;
 
-    public SignUpResponse(User newUser)
+    public SignUpResponse(User newUser, String authToken)
     {
         signedUpUser = newUser;
+        this.authToken = authToken;
         message = null;
     }
 
@@ -17,6 +19,7 @@ public class SignUpResponse
     {
         this.message = message;
         signedUpUser = null;
+        authToken = null;
     }
 
     public User getUser()
@@ -27,5 +30,10 @@ public class SignUpResponse
     public String getMessage()
     {
         return message;
+    }
+
+    public String getAuthToken()
+    {
+        return authToken;
     }
 }

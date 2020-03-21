@@ -5,9 +5,12 @@ import edu.byu.cs.tweeter.model.domain.User;
 
 public class StoryRequest
 {
-    private final User owner;
-    private final int limit;
-    private final SimpleStatus lastStatus;
+    public User owner;
+    public int limit;
+    public SimpleStatus lastStatus;
+
+    public StoryRequest()
+    {}
 
     public StoryRequest(User owner, int limit, SimpleStatus lastStatus)
     {

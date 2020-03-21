@@ -2,7 +2,10 @@ package edu.byu.cs.tweeter.model.net.request;
 
 public class SignInRequest
 {
-    private final String userAlias, password;
+    public String userAlias, password;
+
+    public SignInRequest()
+    {}
 
     public SignInRequest(String userAlias, String password)
     {

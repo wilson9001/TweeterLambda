@@ -2,7 +2,10 @@ package edu.byu.cs.tweeter.model.net.request;
 
 public class SearchRequest
 {
-    private final String searchQuery;
+    public String searchQuery;
+
+    public SearchRequest()
+    {}
 
     public SearchRequest(String searchQuery)
     {

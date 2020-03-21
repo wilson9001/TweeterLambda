@@ -5,9 +5,12 @@ import edu.byu.cs.tweeter.model.domain.User;
 
 public class FeedRequest
 {
-    private final User owner;
-    private final int limit;
-    private final SimpleStatus lastStatus;
+    public User owner;
+    public int limit;
+    public SimpleStatus lastStatus;
+
+    public FeedRequest()
+    {}
 
     public FeedRequest(User owner, int limit, SimpleStatus lastStatus)
     {

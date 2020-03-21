@@ -5,9 +5,12 @@ import edu.byu.cs.tweeter.model.domain.User;
 public class FollowersRequest
 {
 
-    private final User followee;
-    private final int limit;
-    private final User lastFollower;
+    public User followee;
+    public int limit;
+    public User lastFollower;
+
+    public FollowersRequest()
+    {}
 
     public FollowersRequest(User followee, int limit, User lastFollower)
     {

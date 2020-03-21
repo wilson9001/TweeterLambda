@@ -5,11 +5,13 @@ import edu.byu.cs.tweeter.model.domain.User;
 public class SignInResponse
 {
     private final User signedInUser;
+    private final String authToken;
     private final String message;
 
-    public SignInResponse(User signedInUser)
+    public SignInResponse(User signedInUser, String authToken)
     {
         this.signedInUser = signedInUser;
+        this.authToken = authToken;
         this.message = null;
     }
 
@@ -17,6 +19,7 @@ public class SignInResponse
     {
         this.message = message;
         this.signedInUser = null;
+        this.authToken = null;
     }
 
     public User getUser()
@@ -27,5 +30,10 @@ public class SignInResponse
     public String getMessage()
     {
         return message;
+    }
+
+    public String getAuthToken()
+    {
+        return authToken;
     }
 }
