@@ -449,7 +449,7 @@ public class FakeDatabase
         {
             for (User followee : aliasesToUsers.values())
             {
-                if (!follower.equals(followee))
+                if (!follower.equals(followee) && !followee.getAlias().equals(String.format("@User%d", TOTALOTHERUSERS-1)) && !follower.getAlias().equals(String.format("@User%d", TOTALOTHERUSERS-1)))
                 {
                     follows.add(new Follow(follower, followee));
                 }

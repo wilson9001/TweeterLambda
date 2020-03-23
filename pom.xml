@@ -32,6 +32,12 @@
             <version>19.0.0</version>
             <!--scope>compile</scope-->
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
         <!--dependency>
             <groupId>com.amazonaws</groupId>
