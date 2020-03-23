@@ -2,8 +2,8 @@ package edu.byu.cs.tweeter.model.net.response;
 
 class Response {
 
-    private final boolean success;
-    private final String message;
+    public boolean success;
+    public String message;
 
     Response(boolean success) {
         this(success, null);

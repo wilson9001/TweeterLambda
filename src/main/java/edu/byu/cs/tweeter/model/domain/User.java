@@ -39,10 +39,10 @@ public class User implements Comparable<User>
         return lastName;
     }
 
-    public String getName()
+    /*public String getName()
     {
         return String.format("%s %s", firstName, lastName);
-    }
+    }*/
 
     public String getAlias()
     {

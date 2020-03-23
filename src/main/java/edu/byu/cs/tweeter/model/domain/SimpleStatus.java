@@ -9,13 +9,23 @@ import java.util.Objects;
 public class SimpleStatus implements Comparable<SimpleStatus>
 {
     //since java strings have a toString method, and since the other two classes can also implement toString, this may allow for the use of a generic list to print the list.
-    private final String statusText;
-    private final Date timeStamp;
-    private final User poster;
+    public String statusText;
+    public long timeStamp;
+    public User poster;
+
+    public SimpleStatus()
+    {}
 
     public SimpleStatus(@NotNull String statusText, @NotNull User poster)
     {
-        this.timeStamp = new Date();
+        this.timeStamp = System.currentTimeMillis();
+        this.poster = poster;
+        this.statusText = statusText;
+    }
+
+    public SimpleStatus(@NotNull String statusText, @NotNull User poster, long timeStamp)
+    {
+        this.timeStamp = timeStamp;
         this.poster = poster;
         this.statusText = statusText;
     }
@@ -32,7 +42,12 @@ public class SimpleStatus implements Comparable<SimpleStatus>
 
     public Date getTimeStamp()
     {
-        return new Date(timeStamp.getTime());
+        return new Date(timeStamp);
+    }
+
+    public long getRawTimestamp()
+    {
+        return timeStamp;
     }
 
     @Override
@@ -56,7 +71,7 @@ public class SimpleStatus implements Comparable<SimpleStatus>
     {
         return "SimpleStatus{" +
                "alias='" + poster.getAlias() + '\'' +
-               ", timestamp='" + timeStamp.getTime() + '\'' +
+               ", timestamp='" + timeStamp + '\'' +
                ", statusText='" + getStatusText() + '\'' +
                '}';
     }
@@ -64,6 +79,6 @@ public class SimpleStatus implements Comparable<SimpleStatus>
     @Override
     public int compareTo(SimpleStatus status)
     {
-        return this.timeStamp.compareTo(status.getTimeStamp());
+        return Long.compare(timeStamp, status.getRawTimestamp());
     }
 }
