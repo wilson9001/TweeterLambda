@@ -25,6 +25,8 @@ public abstract class DAO
     protected static final String followsTableIndexName = "followee-index";
     protected static final String followsTableIndexHashKey = followsTableRangeKey;
     protected static final String followsTableIndexRangeKey = followsTableHashKey;
+
+    protected static final String invalidAuthTokenMessage = "Invalid authToken";
 }
 
 /*
@@ -67,7 +69,13 @@ follows:
 [
 	{
 		"followerAlias": "<alias of follower>", <----H, IR
+		"followerFirstName": "<first name of follower>"
+		"followerLastName": "<last name of follower>"
+		"followerImageUrl": "<url to follower's image>"
 		"followeeAlias": "<alias of followee>" <----R, IH
+		"followeeFirstName": "<first name of followee>"
+		"followeeLastName": "<last name of followee>"
+		"followeeImageUrl": "<url to followee's image>"
 	}
 ]
 */

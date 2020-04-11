@@ -40,7 +40,7 @@ public class FeedDAO extends DAO
         //first verify authToken
         if(!authTokenDAO.isValidAuthToken(request.request.owner.alias, request.authToken))
         {
-            return new FeedResponse("Invalid authToken");
+            return new FeedResponse(invalidAuthTokenMessage);
         }
 
         //get feed starting from last position
