@@ -34,7 +34,7 @@ public class SearchDAO extends DAO
     {
         if(request_net.request.searchQuery == null)
         {
-            return new SearchResponse("Invalid request");
+            return new SearchResponse(invalidRequestMessage);
         }
 
         //determine if requester is a signed-in user, and if so check if the authToken is still valid and retrieve the user's info

@@ -33,7 +33,7 @@ public class StoryDAO extends DAO
     {
         if(request.getLimit() < 1 || request.getOwner() == null)
         {
-            return new StoryResponse("Invalid request");
+            return new StoryResponse(invalidRequestMessage);
         }
 
         //get story starting from last position

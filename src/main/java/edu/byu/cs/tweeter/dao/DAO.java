@@ -27,6 +27,8 @@ public abstract class DAO
     protected static final String followsTableIndexRangeKey = followsTableHashKey;
 
     protected static final String invalidAuthTokenMessage = "Invalid authToken";
+    protected static final String invalidRequestMessage = "Invalid request";
+    protected static final String serverErrorMessage = "Server error";
 }
 
 /*

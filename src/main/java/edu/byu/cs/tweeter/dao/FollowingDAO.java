@@ -58,7 +58,7 @@ public class FollowingDAO extends DAO
     {
         if(request.getLimit() < 1 || request.getFollower() == null)
         {
-            return new FollowingResponse("Invalid request");
+            return new FollowingResponse(invalidRequestMessage);
         }
 
         //get followers starting from last position
