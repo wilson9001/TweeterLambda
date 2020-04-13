@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class SignInDAO extends DAO
 {
     private static DynamoDBMapper userTableMapper;
-    private static final long authTokenTTLMilliseconds = 86400000; //24 hours
+    public static final long authTokenTTLMilliseconds = 86400000; //24 hours
 
     public SignInDAO()
     {
@@ -26,7 +26,7 @@ public class SignInDAO extends DAO
         }
     }
 
-    public String generateAuthToken()
+    public static String generateAuthToken()
     {
         SecureRandom random = new SecureRandom();
         byte[] bytes = new byte[20];
@@ -34,7 +34,7 @@ public class SignInDAO extends DAO
         return bytes.toString();
     }
 
-    public String hashPassword(String password) throws NoSuchAlgorithmException
+    public static String hashPassword(String password) throws NoSuchAlgorithmException
     {
         MessageDigest MD5 = MessageDigest.getInstance("MD5");
 
