@@ -45,6 +45,7 @@ public abstract class DAO
     protected static final String updateFeedTimeStampKey = postStatusSQSTimeStampKey;
     protected static final String updateFeedPosterAliasKey = postStatusSQSPosterAliasKey;
     protected static final String updateFeedFollowerAliasSplitCharacter = ",";
+    protected static final int followersPerUpdateFeedMessage = 100;
 }
 
 /*

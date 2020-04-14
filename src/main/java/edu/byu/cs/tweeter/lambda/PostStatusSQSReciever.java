@@ -24,7 +24,6 @@ public class PostStatusSQSReciever extends DAO implements RequestHandler<SQSEven
     private static AmazonSQS sqs;
 
     private static final int maxResults = Integer.MAX_VALUE;
-    private static final int followersPerUpdateFeedMessage = 100;
 
     public PostStatusSQSReciever()
     {
