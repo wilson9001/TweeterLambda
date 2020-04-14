@@ -53,17 +53,15 @@ public class SearchDAO extends DAO
 
             List<UserTableItem> authTokenQueryResults = userTableMapper.query(UserTableItem.class, authTokenQueryExpression);
 
-            if(authTokenQueryResults.isEmpty())
+            if(!authTokenQueryResults.isEmpty())
             {
-                return new SearchResponse(invalidAuthTokenMessage);
-            }
+                requestOwner = authTokenQueryResults.get(0);
 
-            requestOwner = authTokenQueryResults.get(0);
-
-            //verify authToken hasn't expired
-            if(requestOwner.getAuthTokenExpirationDate() <= System.currentTimeMillis())
-            {
-                return new SearchResponse(invalidAuthTokenMessage);
+                //verify authToken hasn't expired
+                if(requestOwner.getAuthTokenExpirationDate() <= System.currentTimeMillis())
+                {
+                    return new SearchResponse(invalidAuthTokenMessage);
+                }
             }
         }
 
