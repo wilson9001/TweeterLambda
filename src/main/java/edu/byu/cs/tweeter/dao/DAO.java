@@ -29,6 +29,22 @@ public abstract class DAO
     protected static final String invalidAuthTokenMessage = "Invalid authToken";
     protected static final String invalidRequestMessage = "Invalid request";
     protected static final String serverErrorMessage = "Server error";
+
+    protected static final String postStatusSQSUrl = "https://sqs.us-west-2.amazonaws.com/073776183233/PostStatus";
+    protected static final String postStatusSQSPosterAliasKey = "posterAlias";
+    protected static final String postStatusSQSTimeStampKey = "timestamp";
+    protected static final String postStatusSQSPosterFirstNameKey = "posterFirstName";
+    protected static final String postStatusSQSPosterLastNameKey = "posterLastName";
+    protected static final String postStatusSQSPosterImageUrlKey = "posterImageUrl";
+
+    protected static final String updateFeedSQSUrl = "https://sqs.us-west-2.amazonaws.com/073776183233/updateFeed";
+    protected static final String updateFeedStatusTextKey = "statusText";
+    protected static final String updateFeedPosterFirstNameKey = postStatusSQSPosterFirstNameKey;
+    protected static final String updateFeedPosterLastNameKey = postStatusSQSPosterLastNameKey;
+    protected static final String updateFeedPosterImageUrlKey = postStatusSQSPosterImageUrlKey;
+    protected static final String updateFeedTimeStampKey = postStatusSQSTimeStampKey;
+    protected static final String updateFeedPosterAliasKey = postStatusSQSPosterAliasKey;
+    protected static final String updateFeedFollowerAliasSplitCharacter = ",";
 }
 
 /*
