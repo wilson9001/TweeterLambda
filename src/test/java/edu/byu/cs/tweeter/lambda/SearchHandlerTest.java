@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SearchHandlerTest
 {
     private static final String testQuery = "User0";
-    private static final String authTokenStart = "HorriblyInsecureAuthtokenForUser.";
+    private static final String authTokenStart = "dummyAuthTokenFor";
     private static final SearchRequest_Net request = new SearchRequest_Net(new SearchRequest(testQuery), authTokenStart.concat("@TestUser"));
 
     @Test

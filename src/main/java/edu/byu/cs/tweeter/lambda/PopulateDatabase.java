@@ -84,7 +84,7 @@ public class PopulateDatabase
             return newFollow;
         }).collect(Collectors.toList());
 
-        tableMapper.batchWrite(newUsers, new ArrayList<>(0));
+        //tableMapper.batchWrite(newUsers, new ArrayList<>(0));
         tableMapper.batchWrite(newFollows, new ArrayList<>(0));
 
         System.out.println("Tables populated.");

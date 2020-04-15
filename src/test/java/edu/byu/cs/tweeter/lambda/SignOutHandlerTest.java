@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SignOutHandlerTest
 {
-    private static final String authToken = "HorriblyInsecureAuthtokenForUser.@TestUser";
-    private static final User testUser = new User("Test", "User", "");
+    private static final String authToken = "DummyAuthTokenFor@User777";
+    private static final User testUser = new User("User", "777", "");
     private static final SignOutRequest_Net request = new SignOutRequest_Net(authToken, new SignOutRequest(testUser));
 
     @Test

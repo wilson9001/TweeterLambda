@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetFeedHandlerTest
 {
-    private static final String authTokenStart = "HorriblyInsecureAuthtokenForUser.";
-    private static final User testUser = new User("Test", "User", "");
+    private static final String authToken = "automatedTestingAuthToken";
+    private static final User testUser = new User("User", "1009", "");
 
-    private static final FeedRequest_Net request = new FeedRequest_Net(authTokenStart.concat(testUser.alias), new FeedRequest(testUser, 10, null));
+    private static final FeedRequest_Net request = new FeedRequest_Net(authToken, new FeedRequest(testUser, 10, null));
 
     @Test
     void handleRequest()

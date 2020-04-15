@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SignInHandlerTest
 {
-    private static final String alias = "TestUser";
+    private static final String alias = "User666";
     private static final String password = "password";
     private static final SignInRequest request = new SignInRequest(alias, password);
 

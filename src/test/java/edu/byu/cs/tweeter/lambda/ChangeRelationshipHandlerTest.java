@@ -11,39 +11,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ChangeRelationshipHandlerTest
 {
-    private static final String authTokenBase = "HorriblyInsecureAuthtokenForUser.";
-    private static final User userA = new User("User", "A", "");
-    private static final User userB = new User("User", "B", "");
-    private static final ChangeRelationshipRequest_Net followRequest = new ChangeRelationshipRequest_Net(authTokenBase.concat(userA.alias), new ChangeRelationshipRequest(userA, userB, ChangeRelationshipRequest.RelationshipChange.FOLLOW));
-    private static final ChangeRelationshipRequest_Net unFollowRequest = new ChangeRelationshipRequest_Net(authTokenBase.concat(userA.alias), new ChangeRelationshipRequest(userA, userB, ChangeRelationshipRequest.RelationshipChange.UNFOLLOW));
+    private static final String authToken = "automatedTestingAuthToken";
+    private static final User userA = new User("User", "1009", "");
+    private static final User userB = new User("User", "0", "");
+    private static final ChangeRelationshipRequest_Net followRequest = new ChangeRelationshipRequest_Net(authToken, new ChangeRelationshipRequest(userA, userB, ChangeRelationshipRequest.RelationshipChange.FOLLOW));
+    private static final ChangeRelationshipRequest_Net unFollowRequest = new ChangeRelationshipRequest_Net(authToken, new ChangeRelationshipRequest(userA, userB, ChangeRelationshipRequest.RelationshipChange.UNFOLLOW));
 
     @Test
-    void followTest()
+    void followAndUnfollowTest()
     {
         ChangeRelationshipHandler changeRelationshipHandler = new ChangeRelationshipHandler();
 
-        try
-        {
-            ChangeRelationshipResponse changeRelationshipResponse = changeRelationshipHandler.handleRequest(followRequest, null);
-        }
-        catch (RuntimeException e)
-        {
-            assertNotNull(e.getMessage());
-        }
-    }
+        ChangeRelationshipResponse changeRelationshipResponse = changeRelationshipHandler.handleRequest(followRequest, null);
 
-    @Test
-    void unfollowTest()
-    {
-        ChangeRelationshipHandler changeRelationshipHandler = new ChangeRelationshipHandler();
+        assertNull(changeRelationshipResponse.getMessage());
+        assertEquals(changeRelationshipResponse.getRelationshipChanged(), ChangeRelationshipResponse.RelationshipChanged.FOLLOWED);
 
-        try
-        {
-            ChangeRelationshipResponse changeRelationshipResponse = changeRelationshipHandler.handleRequest(unFollowRequest, null);
-        }
-        catch (RuntimeException e)
-        {
-            assertNotNull(e.getMessage());
-        }
+        changeRelationshipResponse = changeRelationshipHandler.handleRequest(unFollowRequest, null);
+
+        assertNull(changeRelationshipResponse.getMessage());
+        assertEquals(changeRelationshipResponse.getRelationshipChanged(), ChangeRelationshipResponse.RelationshipChanged.UNFOLLOWED);
     }
 }

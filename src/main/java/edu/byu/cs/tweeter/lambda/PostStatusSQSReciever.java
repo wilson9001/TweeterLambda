@@ -1,5 +1,9 @@
 package edu.byu.cs.tweeter.lambda;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.SQSEvent;
@@ -9,6 +13,7 @@ import com.amazonaws.services.sqs.model.DeleteMessageRequest;
 import com.amazonaws.services.sqs.model.MessageAttributeValue;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import edu.byu.cs.tweeter.dao.DAO;
+import edu.byu.cs.tweeter.dao.FollowsTableItem;
 import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.request.FollowersRequest;
 import edu.byu.cs.tweeter.model.net.response.FollowersResponse;
@@ -22,14 +27,21 @@ import java.util.stream.Collectors;
 public class PostStatusSQSReciever extends DAO implements RequestHandler<SQSEvent, Void>
 {
     private static AmazonSQS sqs;
+    private static DynamoDBMapper followsTableMapper;
 
-    private static final int maxResults = Integer.MAX_VALUE;
+    //private static final int maxResults = Integer.MAX_VALUE;
 
     public PostStatusSQSReciever()
     {
         if (sqs == null)
         {
             sqs = AmazonSQSClientBuilder.standard().withRegion(region).build();
+        }
+
+        if(followsTableMapper == null)
+        {
+            AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(region).build();
+            followsTableMapper = new DynamoDBMapper(client);
         }
     }
 
@@ -75,7 +87,7 @@ public class PostStatusSQSReciever extends DAO implements RequestHandler<SQSEven
             Map<String, SQSEvent.MessageAttribute> messageAttributeMap = postStatusMessage.getMessageAttributes();
 
             //get followers
-            FollowersRequest followersRequest = new FollowersRequest(new User(
+            /*FollowersRequest followersRequest = new FollowersRequest(new User(
                     messageAttributeMap.get(postStatusSQSPosterFirstNameKey).getStringValue(),
                     messageAttributeMap.get(postStatusSQSPosterLastNameKey).getStringValue(),
                     messageAttributeMap.get(postStatusSQSPosterAliasKey).getStringValue().substring(1),
@@ -87,13 +99,25 @@ public class PostStatusSQSReciever extends DAO implements RequestHandler<SQSEven
             System.out.println("Follower request alias: ".concat(followersRequest.followee.alias));
             System.out.println("Follower request imageUrl: ".concat(followersRequest.followee.imageUrl));
 
-            FollowersResponse followersResponse = new FollowersService().getFollowers(followersRequest);
+            FollowersResponse followersResponse = new FollowersService().getFollowers(followersRequest);*/
 
-            List<User> followers = followersResponse.getFollowers();
+            FollowsTableItem followsTableQuery = new FollowsTableItem();
+            followsTableQuery.setFolloweeAlias(messageAttributeMap.get(postStatusSQSPosterAliasKey).getStringValue());
 
-            System.out.println(String.format("This user has %d followers", followers.size()));
+            DynamoDBQueryExpression<FollowsTableItem> followersQueryExpression = new DynamoDBQueryExpression<FollowsTableItem>()
+                    .withIndexName(followsTableIndexName)
+                    .withHashKeyValues(followsTableQuery)
+                    .withScanIndexForward(false)
+                    .withConsistentRead(false);
 
-            List<String> followerAliases = followers.stream().map(User::getAlias).collect(Collectors.toList());
+            List<String> followerAliases = followsTableMapper.query(FollowsTableItem.class, followersQueryExpression)
+                    .stream().map(FollowsTableItem::getFollowerAlias).collect(Collectors.toList());
+
+            //List<User> followers = followersResponse.getFollowers();
+
+            System.out.println(String.format("This user has %d followers", followerAliases.size()));
+
+            //List<String> followerAliases = followers.stream().map(User::getAlias).collect(Collectors.toList());
 
             int startIndex = 0;
             int endIndex = Math.min(followerAliases.size(), followersPerUpdateFeedMessage);

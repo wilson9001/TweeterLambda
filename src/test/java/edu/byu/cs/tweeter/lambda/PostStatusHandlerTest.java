@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PostStatusHandlerTest
 {
-    private static final User testUser = new User("Test", "User", "");
-    private static final String authTokenStart = "HorriblyInsecureAuthtokenForUser.";
-    private static final PostStatusRequest_Net request = new PostStatusRequest_Net(authTokenStart.concat(testUser.getAlias()), new PostStatusRequest(testUser, "Foo"));
+    private static final User testUser = new User("User", "1009", "");
+    private static final String authToken = "automatedTestingAuthToken";
+    private static final PostStatusRequest_Net request = new PostStatusRequest_Net(authToken, new PostStatusRequest(testUser, "This is an automated test"));
 
     @Test
     void handleRequest()
