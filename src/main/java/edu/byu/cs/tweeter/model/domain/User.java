@@ -26,7 +26,7 @@ public class User implements Comparable<User>
         this.firstName = firstName.isEmpty() ? "firstName" : firstName;
         this.lastName = lastName.isEmpty() ? "lastName" : lastName;
         this.alias = alias.isEmpty() ? "@".concat(this.firstName).concat(this.lastName) : "@".concat(alias);
-        this.imageUrl = imageURL.isEmpty() ? "https://vignette.wikia.nocookie.net/stupididy/images/1/19/Chester_Cheetah.jpg/revision/latest?cb=20161013224811" : imageURL;
+        this.imageUrl = imageURL.isEmpty() ? "https://tweeter-data.s3-us-west-2.amazonaws.com/Chester_Cheetah.webp" : imageURL;
     }
 
     public String getFirstName()
