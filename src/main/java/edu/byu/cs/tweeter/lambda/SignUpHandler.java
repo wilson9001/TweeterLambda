@@ -16,6 +16,7 @@ public class SignUpHandler implements RequestHandler<SignUpRequest, SignUpRespon
 
         if(response.getMessage() != null)
         {
+            System.out.println(response.getMessage());
             throw new RuntimeException(response.getMessage());
         }
 

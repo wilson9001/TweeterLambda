@@ -125,6 +125,7 @@ public class SignUpDAO extends DAO
         //create user entry in table
         userTableMapper.save(possibleNewUser);
 
+        System.out.println("Returning successful sign in...");
         return new SignUpResponse(new User(
                 possibleNewUser.getFirstName(),
                 possibleNewUser.getLastName(),

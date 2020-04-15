@@ -22,7 +22,7 @@ public class SignUpResponse
         authToken = null;
     }
 
-    public User getUser()
+    public User getSignedUpUser()
     {
         return signedUpUser;
     }
